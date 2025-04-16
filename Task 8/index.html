@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Регистрация в Сервис</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="loader.css">
+</head>
+<body>
+
+  <section id="loader">
+    <div class="loader-container">
+      <div class="loader-bar">
+        <div class="loader-fill" id="loader-fill"></div>
+      </div>
+    </div>
+  </section>
+
+  <script src="loader.js"></script>
+
+  <main id="page" class="invisible">
+    <h1>Добро пожаловать в сервис!</h1>
+    <p>Основной контент страницы</p>
+    <section id="frame_1">
+        <h2>Шаг 1. Персональные данные</h2>
+        <form id="personal-form">
+          <div class="form-row">
+            <label>Имя:<br><input type="text" id="first-name"></label>
+            <label>Фамилия:<br><input type="text" id="last-name"></label>
+          </div>
+          <div class="form-row">
+            <label>Электронная почта:<br><input type="email" id="email"></label>
+            <label>Адрес:<br><input type="text" id="address"></label>
+          </div>
+          <div class="form-row">
+            <label>Страна:<br><select id="country"></select></label>
+          </div>
+          <div class="form-row">
+            <label>Пароль:<br><input type="password" id="password"></label>
+            <label>Повторите пароль:<br><input type="password" id="confirm-password"></label>
+          </div>
+          <div class="form-buttons">
+            <button type="button" id="cancel-btn">Отмена</button>
+            <button type="button" id="next-btn" disabled>Далее</button>
+          </div>
+        </form>
+      </section>
+      
+  </main>
+
+  <script src="code.js"></script>
+</body>
+</html>
