@@ -43,4 +43,41 @@ const countries = [
   document.getElementById('next-btn').addEventListener('click', () => {
     alert('Переход ко второму шагу'); 
   });
-  
+
+  // Переход с шага 1 на шаг 2
+document.getElementById('next-btn').addEventListener('click', () => {
+  document.getElementById('frame_1').classList.add('invisible');
+  document.getElementById('frame_2').classList.remove('invisible');
+});
+
+// Кнопка "Назад"
+document.getElementById('back-btn').addEventListener('click', () => {
+  document.getElementById('frame_2').classList.add('invisible');
+  document.getElementById('frame_1').classList.remove('invisible');
+});
+
+// Кнопка "Отправить"
+document.getElementById('send-code-btn').addEventListener('click', () => {
+  const phone = document.getElementById('phone').value.trim();
+  const phoneValid = /^\+?\d{10,15}$/.test(phone.replace(/[^\d+]/g, '')); // грубая проверка
+  if (phoneValid) {
+    document.getElementById('code-section').classList.remove('invisible');
+  } else {
+    alert('Введите корректный номер телефона.');
+  }
+});
+
+// Проверка кода
+document.getElementById('verify-code-btn').addEventListener('click', () => {
+  const code = document.getElementById('code-input').value.trim();
+  if (/^\d{4}$/.test(code)) {
+    document.getElementById('next-btn-2').disabled = false;
+  } else {
+    alert('Введите 4-значный код');
+  }
+});
+
+// Переход к третьему шагу
+document.getElementById('next-btn-2').addEventListener('click', () => {
+  alert('Переход к шагу 3: подключение оплаты');
+});
