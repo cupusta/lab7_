@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <title>Регистрация в Сервис</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="loader.css">
 </head>
 <body>
 
+  <!-- Лоадер -->
   <section id="loader">
     <div class="loader-container">
       <div class="loader-bar">
@@ -16,59 +16,109 @@
     </div>
   </section>
 
-  <script src="loader.js"></script>
+  <!-- Основной контент -->
+  <main id="main" class="invisible">
 
-  <main id="page" class="invisible">
-    <h1>Добро пожаловать в сервис!</h1>
-    <p>Основной контент страницы</p>
-    <section id="frame_1">
-        <h2>Шаг 1. Персональные данные</h2>
-        <form id="personal-form">
-          <div class="form-row">
-            <label>Имя:<br><input type="text" id="first-name"></label>
-            <label>Фамилия:<br><input type="text" id="last-name"></label>
-          </div>
-          <div class="form-row">
-            <label>Электронная почта:<br><input type="email" id="email"></label>
-            <label>Адрес:<br><input type="text" id="address"></label>
-          </div>
-          <div class="form-row">
-            <label>Страна:<br><select id="country"></select></label>
-          </div>
-          <div class="form-row">
-            <label>Пароль:<br><input type="password" id="password"></label>
-            <label>Повторите пароль:<br><input type="password" id="confirm-password"></label>
-          </div>
-          <div class="form-buttons">
-            <button type="button" id="cancel-btn">Отмена</button>
-            <button type="button" id="next-btn" disabled>Далее</button>
-          </div>
-        </form>
-      </section>
-      
-      <section id="frame_2" class="invisible">
-        <h2>Шаг 2. Телефонный номер</h2>
-        <p>В целях безопасности Сервису нужно подтверждение вашего телефонного номера. На ваш номер будет отправлен 4-значный код подтверждения.</p>
-      
-        <div class="form-row">
-          <input type="tel" id="phone" placeholder="+7(___)___-__-__">
-          <button id="send-code-btn" type="button">Отправить</button>
+    <!-- Изначальный экран -->
+    <section id="start">
+      <h1>Добро пожаловать в Сервис!</h1>
+      <button id="start-registration">Регистрация</button>
+    </section>
+
+    <!-- Шаг 1: Персональные данные -->
+    <section id="step1" class="hidden">
+      <div class="progress-bar">
+        <div class="progress" style="width: 0%;"></div>
+      </div>
+      <h2>Шаг 1: Персональные данные</h2>
+      <form id="form-step1" class="form-grid">
+        <div class="form-group">
+          <label for="first-name">Имя:</label>
+          <input type="text" id="first-name" required>
         </div>
-      
-        <div id="code-section" class="invisible">
-          <p>Введите код подтверждения:</p>
-          <input type="text" id="code-input" maxlength="4" pattern="\d{4}">
-          <button id="verify-code-btn" type="button">Проверить</button>
+        <div class="form-group">
+          <label for="last-name">Фамилия:</label>
+          <input type="text" id="last-name" required>
         </div>
-      
-        <div class="form-buttons">
-          <button type="button" id="back-btn">Назад</button>
-          <button type="button" id="next-btn-2" disabled>Далее</button>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" required>
         </div>
-      </section>
-      
+        <div class="form-group">
+          <label for="address">Адрес:</label>
+          <input type="text" id="address" required>
+        </div>
+        <div class="form-group">
+          <label for="country">Страна:</label>
+          <select id="country" required>
+            <option value="">Выберите страну</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="password">Пароль:</label>
+          <input type="password" id="password" required>
+        </div>
+        <div class="form-group">
+          <label for="repeat-password">Повторите пароль:</label>
+          <input type="password" id="repeat-password" required>
+        </div>
+      </form>
+    
+      <div class="buttons">
+        <button id="cancel-step1">Отмена</button>
+        <button id="next-step1" disabled>Далее</button>
+      </div>
+    </section>
+
+    <!-- Шаг 2: Телефон -->
+    <section id="step2" class="step hidden">
+      <div class="progress-bar"><div class="progress" style="width: 33%;"></div></div>
+      <h2>Шаг 2. Телефонный номер</h2>
+      <p>Введите номер телефона. На него будет отправлен код подтверждения.</p>
+      <label>Телефон: <input type="tel" id="phone" placeholder="+7(___)___-__-__"></label>
+      <button id="send-code">Отправить</button>
+
+      <div id="code-section" class="hidden">
+        <label>Код: <input type="text" id="code" maxlength="4"></label>
+        <button id="verify-code">Проверить</button>
+      </div>
+
+      <div class="buttons">
+        <button id="back-step2">Назад</button>
+        <button id="next-step2" disabled>Далее</button>
+      </div>
+    </section>
+
+    <!-- Шаг 3: Метод оплаты -->
+    <section id="step3" class="step hidden">
+      <div class="progress-bar"><div class="progress" style="width: 66%;"></div></div>
+      <h2>Шаг 3. Метод оплаты</h2>
+      <label>Номер карты:
+        <div class="card-input">
+          <input type="text" maxlength="4" class="card" id="card1">
+          <input type="text" maxlength="4" class="card" id="card2">
+          <input type="text" maxlength="4" class="card" id="card3">
+          <input type="text" maxlength="4" class="card" id="card4">
+        </div>
+      </label>
+      <label>Срок действия: <input type="text" id="expiry" placeholder="MM/YY"></label>
+      <label>CVV: <input type="text" id="cvv" maxlength="3"></label>
+      <label><input type="checkbox" id="agree"> Я согласен с любыми условиями</label>
+
+      <div class="buttons">
+        <button id="back-step3">Назад</button>
+        <button id="finish" disabled>Завершить</button>
+      </div>
+    </section>
+
+    <!-- Финальный шаг -->
+    <section id="step4" class="step hidden">
+      <div class="progress-bar"><div class="progress" style="width: 100%;"></div></div>
+      <h2>Регистрация завершена!</h2>
+      <p>Спасибо за регистрацию в нашем сервисе 🎉</p>
+    </section>
   </main>
 
-  <script src="code.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
